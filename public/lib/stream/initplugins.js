@@ -3,8 +3,8 @@
  */
 
 require.def("stream/initplugins",
-  ["stream/tweet", "stream/settings", "stream/twitterRestAPI", "stream/helpers", "text!../templates/tweet.ejs.html", "ext/cookie.js"],
-  function(tweetModule, settings, rest, helpers, templateText) {
+  ["stream/tweet", "stream/settings", "stream/background", "stream/twitterRestAPI", "stream/helpers", "text!../templates/tweet.ejs.html", "ext/cookie.js"],
+  function(tweetModule, settings, background, rest, helpers, templateText) {
     
     settings.registerNamespace("general", "General");
     settings.registerKey("general", "showTwitterBackground", "Show my background from Twitter",  false);
@@ -242,7 +242,7 @@ require.def("stream/initplugins",
       prefillTimeline: {
         func: function prefillTimeline (stream) { 
           
-          var bg = window.Background;
+          var bg = background.page;
           if(bg && bg.Streamie_Loaded) {
             $('#stream').html( bg.$('#stream').html() );
             $(document).trigger("tweet:first");
