@@ -5,14 +5,13 @@
 require.def("stream/background",
   function() {
     
-    if(window.Streamie_Background) {
+    if(location.search.indexOf('background=true') != -1) {
       $(document).bind("streamie:init:complete", function () {
         window.Streamie_Loaded = true;
       })
     } else {
-      
       if(window.chrome.app.isInstalled) {
-        var bg = window.open('/background.html#yay', 'background', 'background');
+        var bg = window.open('/?background=true#yah', 'background', 'background');
         window.Background = bg;
       }
     }
