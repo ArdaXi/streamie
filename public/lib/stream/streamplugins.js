@@ -291,6 +291,7 @@ require.def("stream/streamplugins",
           var lis = $('#stream').children();
           while(lis.size() > plugin.max) {
             var last = lis.last();
+            last.data('tweet').node = null; // delete the circular ref to the node
             last.remove();
             lis = $('#stream').children();
           } 
