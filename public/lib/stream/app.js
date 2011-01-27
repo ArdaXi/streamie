@@ -37,6 +37,7 @@ require.def("stream/app",
       streamPlugin.renderTemplate,
       streamPlugin.age,
       streamPlugin.prepend,
+      streamPlugin.maxNumberOfTweets,
       streamPlugin.keepScrollState,
       streamPlugin.newTweetEvent,
       streamPlugin.webkitNotify
