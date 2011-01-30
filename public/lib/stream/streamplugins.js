@@ -432,16 +432,12 @@ require.def("stream/streamplugins",
             window.webkitNotifications && 
             window.webkitNotifications.checkPermission() == 0) {
             try {
-			  if(!notiQueue) { notiQueue = new Array() }
-			  if(!window.dequeueMsg) { window.dequeueMsg = function() { return queue.shift(); } }
-              notiQueue.push({'type': 'tweet','content': tweet});
-			  var notification = window.webkitNotifications.createHTMLNotification("notification.html");
+			  var notification = window.webkitNotifications.createHTMLNotification("notification.html#"+tweet.id);
 			  notification.show();
               notification.onclose = function() {
                 --plugin.current;
               } //onclose
-              ++plugin.current;               
-              //hide after 5 seconds
+              ++plugin.current;
             } catch(e) {
             }
           }

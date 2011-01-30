@@ -37,9 +37,13 @@ function tweetToHTML(tweet)
 }
 
 $().ready(function() {
-	var msg = window.opener.dequeueMsg();
-	if(!msg){ window.close(); }
-	if(msg.type == "tweet") { tweetToHTML(msg.content); }
+	require(["stream/twitterRestAPI"], function(rest) {
+		var id = window.location.hash.substring(1);
+		rest.get("/1/statuses/show/"+id+".json", function(tweetData, status){
+			if(status != "success") { window.close(); }
+			tweetToHTML(JSON.parse(tweetData));
+		});
+	} }
 	setTimeout("window.close()", 20000);
 	if($("#main").height() > 48)
 	{
