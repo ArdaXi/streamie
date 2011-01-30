@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Streamie WebSocket Proxy iFrame</title>
+</head>
+<body>
+<script src="ext/socket.io/socket.io.js"></script>
+<script>
+window.Proxy_Loaded = true;
+document.domain = "streamie.com";
+window.onload = function () {
+  if(parent.Socket_Proxy_CB) {
+    parent.Socket_Proxy_CB(window)
+  }
+}
+</script>
+</body> 
+</html>

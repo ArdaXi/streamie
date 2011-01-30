@@ -285,6 +285,22 @@ require.def("stream/streamplugins",
         }
       },
       
+      // limit the number of tweets displayed to a sane number
+      maxNumberOfTweets: {
+        max: 300, // TODO: Make this configurable
+        func: function maxNumberOfTweets (tweet, stream, plugin) {
+          var lis = $('#stream').children();
+          while(lis.size() > plugin.max) {
+            var last = lis.last();
+            last.data('tweet').node = null; // delete the circular ref to the node
+            last.remove();
+            lis = $('#stream').children();
+          } 
+          
+          this();
+        }
+      },
+      
       // htmlencode the text to avoid XSS
       htmlEncode: {
         func: function htmlEncode (tweet, stream, plugin) {
