@@ -432,19 +432,16 @@ require.def("stream/streamplugins",
             window.webkitNotifications && 
             window.webkitNotifications.checkPermission() == 0) {
             try {
-              var notification = 
-                window.webkitNotifications.createNotification(tweet.data.user.profile_image_url, 
-                  tweet.data.user.name, 
-                  tweet.data.text);
-              notification.show();
+			  if(!notiQueue) { notiQueue = new Array() }
+			  if(!window.dequeueMsg) { window.dequeueMsg = function() { return queue.shift(); } }
+              notiQueue.push({'type': 'tweet','content': tweet});
+			  var notification = window.webkitNotifications.createHTMLNotification("notification.html");
+			  notification.show();
               notification.onclose = function() {
                 --plugin.current;
               } //onclose
               ++plugin.current;               
               //hide after 5 seconds
-              setTimeout(function() {
-                notification.cancel();
-              }, 5000);
             } catch(e) {
             }
           }
