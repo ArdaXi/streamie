@@ -4,8 +4,8 @@
  */
 
 require.def("stream/streamplugins",
-  ["stream/tweet", "stream/settings", "stream/twitterRestAPI", "stream/helpers", "stream/keyValueStore", "text!../templates/tweet.ejs.html"],
-  function(tweetModule, settings, rest, helpers, keyValue, templateText) {
+  ["stream/tweet", "stream/settings", "stream/twitterRestAPI", "stream/helpers", "stream/keyValueStore", "text!../templates/tweet.ejs.html", "stream/endpoint"],
+  function(tweetModule, settings, rest, helpers, keyValue, templateText, endpoint) {
     
     settings.registerNamespace("filter", "Filter");
     settings.registerKey("filter", "longConversation", "Filter long (more than 3 tweets) conversations",  false);
@@ -327,7 +327,10 @@ require.def("stream/streamplugins",
           var text = tweet.textHTML;
           
           text = text.replace(plugin.GRUBERS_URL_RE, function(url){
-            return '<a href="'+((/^\w+\:\//.test(url)?'':'http://')+helpers.html(url))+'">'+helpers.html(url)+'</a>';
+		    var expanded;
+			endpoint.resolve(url, function(ex) { expanded = ex; });
+			while(!expanded) continue;
+            return '<a href="'+((/^\w+\:\//.test(expanded)?'':'http://')+helpers.html(expanded))+'">'+helpers.html(expanded)+'</a>';
           })
 					
           // screen names
@@ -444,7 +447,7 @@ require.def("stream/streamplugins",
           this();
         } 
       }
-      
+	  
     }
       
   }
