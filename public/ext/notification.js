@@ -43,7 +43,7 @@ $().ready(function() {
 			if(status != "success") { window.close(); }
 			tweetToHTML(JSON.parse(tweetData));
 		});
-	} }
+	}
 	setTimeout("window.close()", 20000);
 	if($("#main").height() > 48)
 	{
