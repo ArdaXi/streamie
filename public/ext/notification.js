@@ -33,7 +33,7 @@ function tweetToHTML(tweet)
 }
 
 $().ready(function() {
-	var tweet = JSON.stringify(window.location.hash.substring(1));
+	var tweet = JSON.parse(window.location.hash.substring(1));
 	//tweetToHTML(tweet);
 	$("#container").html(JSON.stringify(tweet));
 	setTimeout("window.close()", 20000);
