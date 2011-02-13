@@ -28,7 +28,7 @@ function tweetToHTML(tweet)
 		$(this).click(function(){
 			openLink(this.href);
 		});
-		$(this).removeAttr("href");
+		this.href = "#";
 	});
 }
 
