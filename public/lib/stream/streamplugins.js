@@ -435,7 +435,20 @@ require.def("stream/streamplugins",
             window.webkitNotifications && 
             window.webkitNotifications.checkPermission() == 0) {
             try {
-			  var notification = window.webkitNotifications.createHTMLNotification("notification.html#"+tweet.id);
+			  var tweetHash = {
+			    'name':tweet.data.user.screen_name,
+				'screen_name':tweet.data.user.screen_name,
+				'avatar':tweet.data.user.profile_image_url,
+				'tweet':tweet.data.text,
+				'created_at':tweet.data.created_at,
+				'source':tweet.data.source
+			  };
+			  if(tweet.data.retweeted_status)
+				  tweetHash.RTby = {
+					  'screen_name': tweet.data.retweeted_status.user.screen_name,
+					  'name': tweet.data.retweeted_status.user.name
+				  };
+			  var notification = window.webkitNotifications.createHTMLNotification("notification.html#"+JSON.stringify(tweetHash));
 			  notification.show();
               notification.onclose = function() {
                 --plugin.current;
