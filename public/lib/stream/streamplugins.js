@@ -441,7 +441,8 @@ require.def("stream/streamplugins",
 				'avatar':tweet.data.user.profile_image_url,
 				'tweet':tweet.data.text,
 				'created_at':tweet.data.created_at,
-				'source':tweet.data.source
+				'source':tweet.data.source,
+				'entities':tweet.data.entities
 			  };
 			  if(tweet.data.retweeted_status)
 				  tweetHash.RTby = {
