@@ -34,8 +34,7 @@ function tweetToHTML(tweet)
 
 $().ready(function() {
 	var tweet = JSON.parse(window.location.hash.substring(1));
-	//tweetToHTML(tweet);
-	$("#container").html(JSON.stringify(tweet));
+	tweetToHTML(tweet);
 	setTimeout("window.close()", 20000);
 	if($("#main").height() > 48)
 	{
