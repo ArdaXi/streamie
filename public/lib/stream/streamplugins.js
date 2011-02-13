@@ -439,7 +439,7 @@ require.def("stream/streamplugins",
 			    'name':tweet.data.user.screen_name,
 				'screen_name':tweet.data.user.screen_name,
 				'avatar':tweet.data.user.profile_image_url,
-				'tweet':tweet.data.text,
+				'text':tweet.data.text,
 				'created_at':tweet.data.created_at,
 				'source':tweet.data.source,
 				'entities':tweet.data.entities
