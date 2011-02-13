@@ -82,7 +82,8 @@ var iso8601 = function (date) {
 };
 
 function escapeHTML(text) {
-    return $('<div/>').text(text).html();
+    var div = document.createElement("div").innerText = text;
+	return div.innerHTML;
 }
 
 function linkify_entities(tweet) {
